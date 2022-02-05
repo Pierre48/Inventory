@@ -29,6 +29,7 @@ class List extends Component {
          <View>
          { this.state.data.map((item)=>(
             <TouchableOpacity
+            onPress={()=>this.props.navigation.navigate('Inventaire', { name: item.name })}
             style = {styles.container}>
                <Text style = {styles.text}> { item.name } </Text>
             </TouchableOpacity>
