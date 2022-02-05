@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-   
+
 class List extends Component {
    state = {
-      data: ''
+      data: []
    }
    alertItemName = (item) => {
       alert(item.name)
    }
    componentDidMount = () => {
-      fetch('https://localhost:7085/api/Inventory', {
-         method: 'GET'
+      fetch('https://localhost:7085/api/Item', {
+         method: 'GET',
+
       })
       .then((response) => response.json())
       .then((responseJson) => {
          console.log(responseJson);
          this.setState({
-            data: responseJson
+            data: responseJson,
          })
       })
       .catch((error) => {
@@ -26,18 +27,12 @@ class List extends Component {
    render() {
       return (
          <View>
-            {
-               this.state.data.map((item, index) => (
-                  <TouchableOpacity
-                     key = {item.id}
-                     style = {styles.container}
-                     onPress = {() => this.alertItemName(item)}>
-                     <Text style = {styles.text}>
-                        {item.name}
-                     </Text>
-                  </TouchableOpacity>
-               ))
-            }
+         { this.state.data.map((item)=>(
+            <TouchableOpacity
+            style = {styles.container}>
+               <Text style = {styles.text}> { item.barcode } </Text>
+            </TouchableOpacity>
+         ))}
          </View>
       )
    }

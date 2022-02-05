@@ -1,9 +1,9 @@
 import React from 'react'
-import StockList from './components/stock-list.js'
+import ItemList from './Components/item-list.js'
 
 const App = () => {
    return (
-      <StockList />
+      <ItemList />
    )
 }
 export default App

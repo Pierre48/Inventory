@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-   
+
 class List extends Component {
    state = {
       data: []
@@ -11,7 +11,7 @@ class List extends Component {
    componentDidMount = () => {
       fetch('https://localhost:7085/api/Inventory', {
          method: 'GET',
-         
+
       })
       .then((response) => response.json())
       .then((responseJson) => {
