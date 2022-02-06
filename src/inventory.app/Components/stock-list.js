@@ -28,8 +28,8 @@ class List extends Component {
       return (
          <View>
          { this.state.data.map((item)=>(
-            <TouchableOpacity
-            onPress={()=>this.props.navigation.navigate('Inventaire', { name: item.name })}
+            <TouchableOpacity key={item.id}
+            onPress={()=>this.props.navigation.navigate('Inventaire', { id: item.id })}
             style = {styles.container}>
                <Text style = {styles.text}> { item.name } </Text>
             </TouchableOpacity>

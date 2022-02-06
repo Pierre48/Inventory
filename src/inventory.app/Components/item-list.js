@@ -6,7 +6,7 @@ const Item = (p) => {
         <View style={styles.center}>
                <TouchableOpacity
                     style={styles.container}>
-                    <Text style={styles.text} onPress={() =>console.log(p.item.barcode)}
+                    <Text style={styles.text} onPress={() =>p.nav.navigate('Item', { item: p.item })}
                         > {p.item.barcode} </Text>
                 </TouchableOpacity>
         </View>
@@ -17,15 +17,14 @@ class List extends Component {
         data: []
     }
     componentDidMount = () => {
-        fetch('https://localhost:7085/api/Item', {
+        fetch('https://localhost:7085/api/Inventory/-1348982359/detail', {
             method: 'GET',
 
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 this.setState({
-                    data: responseJson,
+                    data: responseJson.items,
                 })
             })
             .catch((error) => {
@@ -33,13 +32,11 @@ class List extends Component {
             });
     }
 
-
-
     render() {
         return (
             <View>
                 {this.state.data.map((item) => (
-                    <Item item={item}></Item>
+                    <Item key={item.barcode} item={item} nav={this.props.navigation}></Item>
                 ))}
             </View>
         )
